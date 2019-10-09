@@ -1,0 +1,114 @@
+Microsoft Windows [Version 10.0.17134.471]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\hp>docker exec -it docker_pio_1 /bin/bash
+root@e6ed9ca402ff:/templates# cd
+root@e6ed9ca402ff:~# git clone https://github.com/apache/predictionio-template-text-classifier.git
+Cloning into 'predictionio-template-text-classifier'...
+remote: Enumerating objects: 11516, done.
+remote: Total 11516 (delta 0), reused 0 (delta 0), pack-reused 11516
+Receiving objects: 100% (11516/11516), 117.72 MiB | 2.34 MiB/s, done.
+Resolving deltas: 100% (4734/4734), done.
+root@e6ed9ca402ff:~# ls
+Main.java  predictionio-template-text-classifier
+root@e6ed9ca402ff:~# cd  predictionio-template-text-classifier
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# pio app new MyTextApp
+[INFO] [App$] Initialized Event Store for this app ID: 5.
+[INFO] [Pio$] Created a new app:
+[INFO] [Pio$]       Name: MyTextApp
+[INFO] [Pio$]         ID: 5
+[INFO] [Pio$] Access Key: PiV0-DMyjZWVI0QmRZSAtqm7V15Ga_i3Jin28SC8ELOrDzml9W7k3puHyDvzAIGD
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# pio import --appid 5 --input data/stopwords.json
+[WARN] [WorkflowUtils$] Environment variable MYSQL_JDBC_DRIVER is pointing to a nonexistent file /usr/share/predictionio/lib/mysql-connector-java-8.0.12.jar. Ignoring.
+[INFO] [Runner$] Submission command: /usr/share/spark-2.2.2-bin-hadoop2.7/bin/spark-submit --class org.apache.predictionio.tools.imprt.FileToEvents --jars file:/usr/share/predictionio/lib/postgresql-42.2.4.jar,file:/usr/share/predictionio/lib/spark/pio-data-hdfs-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-hbase-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-jdbc-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-localfs-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-elasticsearch-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-s3-assembly-0.13.0.jar --files file:/etc/predictionio/log4j.properties --driver-class-path /etc/predictionio:/usr/share/predictionio/lib/postgresql-42.2.4.jar:/usr/share/predictionio/lib/mysql-connector-java-8.0.12.jar --driver-java-options -Dpio.log.dir=/var/log/predictionio file:/usr/share/predictionio/lib/pio-assembly-0.13.0.jar --appid 5 --input file:/root/predictionio-template-text-classifier/data/stopwords.json --env PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_HOME=/usr/share/predictionio,PIO_STORAGE_SOURCES_PGSQL_URL=jdbc:postgresql://postgres/pio,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=PGSQL,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=PGSQL,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_PGSQL_PASSWORD=pio,PIO_STORAGE_SOURCES_PGSQL_TYPE=jdbc,PIO_STORAGE_SOURCES_PGSQL_USERNAME=pio,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=PGSQL,PIO_CONF_DIR=/etc/predictionio
+[INFO] [log] Logging initialized @5937ms
+[INFO] [Server] jetty-9.3.z-SNAPSHOT
+[INFO] [Server] Started @6022ms
+[WARN] [Utils] Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+[INFO] [AbstractConnector] Started ServerConnector@e6298a4{HTTP/1.1,[http/1.1]}{0.0.0.0:4041}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@5d97caa4{/jobs,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@71e35c4{/jobs/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@12fe1f28{/jobs/job,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@c269425{/jobs/job/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@51d719bc{/stages,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@1507c3c3{/stages/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@c29fe36{/stages/stage,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@3b5c665c{/stages/stage/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@625a4ff{/stages/pool,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@196ae579{/stages/pool/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@41853299{/storage,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@2e5b7fba{/storage/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@4f0cab0a{/storage/rdd,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7ab4ae59{/storage/rdd/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@5d96bdf8{/environment,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@306f6f1d{/environment/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6fc6deb7{/executors,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7da39774{/executors/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@1df1ced0{/executors/threadDump,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@32b0876c{/executors/threadDump/json,null,AVAILABLE,@Spark}[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@39bbd9e0{/static,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6a87026{/,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@600f5704{/api,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6296474f{/jobs/job/kill,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@169268a7{/stages/stage/kill,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@4c82b5df{/metrics/json,null,AVAILABLE,@Spark}
+[WARN] [SparkContext] Using an existing SparkContext; some configuration may not take effect.
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@4fea5ee0{/SQL,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6630dd28{/SQL/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7b3085a3{/SQL/execution,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7b1c501d{/SQL/execution/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@36871e98{/static/sql,null,AVAILABLE,@Spark}
+[INFO] [FileToEvents$] Events are imported.
+[INFO] [FileToEvents$] Done.
+[INFO] [AbstractConnector] Stopped Spark@e6298a4{HTTP/1.1,[http/1.1]}{0.0.0.0:4041}
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# pio import --appid 5 --input data/emails.json
+[WARN] [WorkflowUtils$] Environment variable MYSQL_JDBC_DRIVER is pointing to a nonexistent file /usr/share/predictionio/lib/mysql-connector-java-8.0.12.jar. Ignoring.
+[INFO] [Runner$] Submission command: /usr/share/spark-2.2.2-bin-hadoop2.7/bin/spark-submit --class org.apache.predictionio.tools.imprt.FileToEvents --jars file:/usr/share/predictionio/lib/postgresql-42.2.4.jar,file:/usr/share/predictionio/lib/spark/pio-data-hdfs-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-hbase-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-jdbc-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-localfs-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-elasticsearch-assembly-0.13.0.jar,file:/usr/share/predictionio/lib/spark/pio-data-s3-assembly-0.13.0.jar --files file:/etc/predictionio/log4j.properties --driver-class-path /etc/predictionio:/usr/share/predictionio/lib/postgresql-42.2.4.jar:/usr/share/predictionio/lib/mysql-connector-java-8.0.12.jar --driver-java-options -Dpio.log.dir=/var/log/predictionio file:/usr/share/predictionio/lib/pio-assembly-0.13.0.jar --appid 5 --input file:/root/predictionio-template-text-classifier/data/emails.json --env PIO_ENV_LOADED=1,PIO_STORAGE_REPOSITORIES_METADATA_NAME=pio_meta,PIO_HOME=/usr/share/predictionio,PIO_STORAGE_SOURCES_PGSQL_URL=jdbc:postgresql://postgres/pio,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=PGSQL,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=PGSQL,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=pio_event,PIO_STORAGE_SOURCES_PGSQL_PASSWORD=pio,PIO_STORAGE_SOURCES_PGSQL_TYPE=jdbc,PIO_STORAGE_SOURCES_PGSQL_USERNAME=pio,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_model,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=PGSQL,PIO_CONF_DIR=/etc/predictionio
+[INFO] [log] Logging initialized @6019ms
+[INFO] [Server] jetty-9.3.z-SNAPSHOT
+[INFO] [Server] Started @6154ms
+[WARN] [Utils] Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+[INFO] [AbstractConnector] Started ServerConnector@26dc1707{HTTP/1.1,[http/1.1]}{0.0.0.0:4041}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@5d97caa4{/jobs,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@71e35c4{/jobs/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@12fe1f28{/jobs/job,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@c269425{/jobs/job/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@51d719bc{/stages,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@1507c3c3{/stages/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@c29fe36{/stages/stage,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@3b5c665c{/stages/stage/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@625a4ff{/stages/pool,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@196ae579{/stages/pool/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@41853299{/storage,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@2e5b7fba{/storage/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@4f0cab0a{/storage/rdd,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7ab4ae59{/storage/rdd/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@5d96bdf8{/environment,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@306f6f1d{/environment/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6fc6deb7{/executors,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7da39774{/executors/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@1df1ced0{/executors/threadDump,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@32b0876c{/executors/threadDump/json,null,AVAILABLE,@Spark}[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@39bbd9e0{/static,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6a87026{/,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@600f5704{/api,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@6296474f{/jobs/job/kill,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@169268a7{/stages/stage/kill,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@17043b04{/metrics/json,null,AVAILABLE,@Spark}
+[WARN] [SparkContext] Using an existing SparkContext; some configuration may not take effect.
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@5f2b9da8{/SQL,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@4fea5ee0{/SQL/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@fe08eaf{/SQL/execution,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@7b3085a3{/SQL/execution/json,null,AVAILABLE,@Spark}
+[INFO] [ContextHandler] Started o.s.j.s.ServletContextHandler@5d5574c7{/static/sql,null,AVAILABLE,@Spark}
+[INFO] [FileToEvents$] Events are imported.
+[INFO] [FileToEvents$] Done.
+[INFO] [AbstractConnector] Stopped Spark@26dc1707{HTTP/1.1,[http/1.1]}{0.0.0.0:4041}
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# dir
+LICENSE.txt  README.md  build.sbt  data  engine.json  project  spark-warehouse  src  template.json
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# ls
+LICENSE.txt  README.md  build.sbt  data  engine.json  project  spark-warehouse  src  template.json
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# ls
+LICENSE.txt  README.md  build.sbt  data  engine.json  project  spark-warehouse  src  template.json
+root@e6ed9ca402ff:~/predictionio-template-text-classifier# ls
+LICENSE.txt  README.md  build.sbt  data  engine.json  project  spark-warehouse  src  template.json
+root@e6ed9ca402ff:~/predictionio-template-text-classifier#
+https://predictionio.apache.org/demo/textclassification/
